@@ -1,5 +1,6 @@
 package com.ajdeyemi.inventorie.services;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,9 @@ public class SalesService {
         }
         if (quantity > itemQuantity) {
             int newQuantity = itemQuantity - quantity;
-            Sales sale = new Sales(productid, quantity, amount, saleDate);
+            Date dateCreated = new Date();
+            // new Date(System.currentTimeMillis());
+            Sales sale = new Sales(productid, quantity, amount, saleDate, dateCreated);
             salesRepository.save(sale);
             Products product = new Products(item.get().getProductId(), item.get().getProductName(),
                     newQuantity, item.get().getProductamount());

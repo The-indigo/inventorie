@@ -24,23 +24,28 @@ public class Sales {
     private double saleAmount;
     @Column(name = "saledate")
     private Date saleDate;
+    @Column(name = "datecreated")
+    private Date dateCreated;
 
     public Sales() {
     }
 
-    public Sales(int productId, int saleQuantity, double saleAmount, Date saleDate) {
+    public Sales(int productId, int saleQuantity, double saleAmount, Date saleDate, Date dateCreated) {
         this.productId = productId;
         this.saleQuantity = saleQuantity;
         this.saleAmount = saleAmount;
         this.saleDate = saleDate;
+        this.dateCreated = dateCreated;
     }
 
-    public Sales(int saleId, int productId, int saleQuantity, double saleAmount, Date saleDate) {
+    public Sales(int saleId, int productId, int saleQuantity, double saleAmount, Date saleDate, Date dateCreated) {
         this.saleId = saleId;
         this.productId = productId;
         this.saleQuantity = saleQuantity;
         this.saleAmount = saleAmount;
         this.saleDate = saleDate;
+        this.dateCreated = dateCreated;
+
     }
 
     public int getSaleId() {
@@ -81,6 +86,14 @@ public class Sales {
 
     public void setSaleDate(Date saleDate) {
         this.saleDate = saleDate;
+    }
+
+    public Date getDateCreated() {
+        return this.dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
 }
