@@ -26,6 +26,8 @@ public class Expenses {
     private String expensetatus;
     @Column(name = "datecreated")
     private Date dateCreated;
+    @Column(name = "approvedby")
+    private String approveBy;
 
     public Expenses() {
     }
@@ -40,13 +42,14 @@ public class Expenses {
     }
 
     public Expenses(int expenseid, String expenseInfo, double expenseAmount, String employeeId, String expensetatus,
-            Date dateCreated) {
+            Date dateCreated, String approveBy) {
         this.expenseid = expenseid;
         this.expenseInfo = expenseInfo;
         this.expenseAmount = expenseAmount;
         this.employeeId = employeeId;
         this.expensetatus = expensetatus;
         this.dateCreated = dateCreated;
+        this.approveBy = approveBy;
     }
 
     public int getExpenseid() {
@@ -96,4 +99,13 @@ public class Expenses {
     public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
     }
+
+    public String getApproveBy() {
+        return this.approveBy;
+    }
+
+    public void setApproveBy(String approveBy) {
+        this.approveBy = approveBy;
+    }
+
 }

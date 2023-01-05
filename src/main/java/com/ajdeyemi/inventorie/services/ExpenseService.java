@@ -24,7 +24,7 @@ public class ExpenseService {
         } else {
             Expenses expense = new Expenses(item.get().getExpenseid(), item.get().getExpenseInfo(),
                     item.get().getExpenseAmount(), item.get().getEmployeeId(), item.get().getExpensetatus(),
-                    item.get().getDateCreated());
+                    item.get().getDateCreated(), item.get().getApproveBy());
             return expense;
         }
     }
@@ -32,16 +32,18 @@ public class ExpenseService {
     public Expenses addExpense(String expenseInfo, double expenseAmount, String employeeId, String expensetatus) {
         Date date = new Date();
         Expenses expense = new Expenses(expenseInfo, expenseAmount, employeeId, expensetatus, date);
+        expensesRepository.save(expense);
         return expense;
     }
 
-    public Expenses changeExpenseStatus(int id, String status) throws Exception {
+    public Expenses changeExpenseStatus(int id, String status, String approvedBy) throws Exception {
         var item = expensesRepository.findById(id);
         if (item.isEmpty()) {
             throw new Exception("This expense cannot found");
         } else {
             Expenses expense = new Expenses(item.get().getExpenseid(), item.get().getExpenseInfo(),
-                    item.get().getExpenseAmount(), item.get().getEmployeeId(), status, item.get().getDateCreated());
+                    item.get().getExpenseAmount(), item.get().getEmployeeId(), status, item.get().getDateCreated(),
+                    approvedBy);
             expensesRepository.save(expense);
             return expense;
         }
