@@ -36,11 +36,12 @@ public class ExpenseController {
                 expenses.getEmployeeId(), "Pending");
     }
 
-    @PutMapping("/expense/{id}status")
+    @PutMapping("/expense/{id}/status")
     public Expenses changeExpenseStatus(@PathVariable("id") int id,
             @RequestBody Map<String, String> item) throws Exception {
         String status = item.get("status");
         String approvedBy = item.get("approvedby");
+
         return expenseService.changeExpenseStatus(id, status, approvedBy);
     }
 

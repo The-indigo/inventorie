@@ -40,6 +40,9 @@ public class ExpenseService {
         var item = expensesRepository.findById(id);
         if (item.isEmpty()) {
             throw new Exception("This expense cannot found");
+        }
+        if (approvedBy == null) {
+            throw new Exception("Who is approving this?");
         } else {
             Expenses expense = new Expenses(item.get().getExpenseid(), item.get().getExpenseInfo(),
                     item.get().getExpenseAmount(), item.get().getEmployeeId(), status, item.get().getDateCreated(),
