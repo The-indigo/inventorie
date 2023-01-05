@@ -28,8 +28,8 @@ public class ProductsController {
         return productsService.addProduct(product.getProductName(), product.getProductQuantity(),
                 product.getProductAmount());
     }
-    // To increase the number of the product quantity
 
+    // To increase the number of the product quantity
     @PutMapping("/products/{id}/quantity")
     public Products addQuantity(@PathVariable("id") int id, @RequestBody Products product) throws Exception {
         return productsService.addProductQuantity(id, product.getProductQuantity());
