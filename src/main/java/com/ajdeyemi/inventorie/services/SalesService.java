@@ -36,7 +36,7 @@ public class SalesService {
             Sales sale = new Sales(productid, quantity, amount, saleDate, dateCreated);
             salesRepository.save(sale);
             Products product = new Products(item.get().getProductId(), item.get().getProductName(),
-                    newQuantity, item.get().getProductamount());
+                    newQuantity, item.get().getProductAmount());
 
             productsRepository.save(product);
             return sale;

@@ -35,7 +35,7 @@ public class ProductsService {
             int prevQuantity = item.get().getProductQuantity();
             int newQuantity = prevQuantity + quantity;
             Products product = new Products(id, item.get().getProductName(), newQuantity,
-                    item.get().getProductamount());
+                    item.get().getProductAmount());
             productsRepository.save(product);
             return product;
         }

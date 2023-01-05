@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,18 +26,19 @@ public class ProductsController {
     @PostMapping("/products/add")
     public Products addProduct(@RequestBody Products product) throws Exception {
         return productsService.addProduct(product.getProductName(), product.getProductQuantity(),
-                product.getProductamount());
+                product.getProductAmount());
     }
+    // To increase the number of the product quantity
 
-    @PostMapping("/products/{id}/quantity")
+    @PutMapping("/products/{id}/quantity")
     public Products addQuantity(@PathVariable("id") int id, @RequestBody Products product) throws Exception {
         return productsService.addProductQuantity(id, product.getProductQuantity());
     }
 
-    @PostMapping("/products/{id}/update")
+    @PutMapping("/products/{id}/update")
     public Products updateProduct(@PathVariable("id") int id, @RequestBody Products product) throws Exception {
         return productsService.updateProduct(id, product.getProductName(), product.getProductQuantity(),
-                product.getProductamount());
+                product.getProductAmount());
     }
 
     @GetMapping("/products/total")
