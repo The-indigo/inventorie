@@ -1,5 +1,7 @@
 package com.ajdeyemi.inventorie.models;
 
+import java.util.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
@@ -22,16 +24,29 @@ public class Expenses {
     private String employeeId;
     @Column(name = "expensestatus")
     private String expensetatus;
+    @Column(name = "datecreated")
+    private Date dateCreated;
 
     public Expenses() {
     }
 
-    public Expenses(int expenseid, String expenseInfo, double expenseAmount, String employeeId, String expensetatus) {
+    public Expenses(String expenseInfo, double expenseAmount, String employeeId, String expensetatus,
+            Date dateCreated) {
+        this.expenseInfo = expenseInfo;
+        this.expenseAmount = expenseAmount;
+        this.employeeId = employeeId;
+        this.expensetatus = expensetatus;
+        this.dateCreated = dateCreated;
+    }
+
+    public Expenses(int expenseid, String expenseInfo, double expenseAmount, String employeeId, String expensetatus,
+            Date dateCreated) {
         this.expenseid = expenseid;
         this.expenseInfo = expenseInfo;
         this.expenseAmount = expenseAmount;
         this.employeeId = employeeId;
         this.expensetatus = expensetatus;
+        this.dateCreated = dateCreated;
     }
 
     public int getExpenseid() {
@@ -74,4 +89,11 @@ public class Expenses {
         this.expensetatus = expensetatus;
     }
 
+    public Date getDateCreated() {
+        return this.dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
+    }
 }

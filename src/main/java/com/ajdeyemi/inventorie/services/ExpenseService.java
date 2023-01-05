@@ -1,5 +1,7 @@
 package com.ajdeyemi.inventorie.services;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +23,28 @@ public class ExpenseService {
             throw new Exception("This expense cannot found");
         } else {
             Expenses expense = new Expenses(item.get().getExpenseid(), item.get().getExpenseInfo(),
-                    item.get().getExpenseAmount(), item.get().getEmployeeId(), item.get().getExpensetatus());
+                    item.get().getExpenseAmount(), item.get().getEmployeeId(), item.get().getExpensetatus(),
+                    item.get().getDateCreated());
             return expense;
         }
     }
+
+    public Expenses addExpense(String expenseInfo, double expenseAmount, String employeeId, String expensetatus) {
+        Date date = new Date();
+        Expenses expense = new Expenses(expenseInfo, expenseAmount, employeeId, expensetatus, date);
+        return expense;
+    }
+
+    public Expenses changeExpenseStatus(int id, String status) throws Exception {
+        var item = expensesRepository.findById(id);
+        if (item.isEmpty()) {
+            throw new Exception("This expense cannot found");
+        } else {
+            Expenses expense = new Expenses(item.get().getExpenseid(), item.get().getExpenseInfo(),
+                    item.get().getExpenseAmount(), item.get().getEmployeeId(), status, item.get().getDateCreated());
+            expensesRepository.save(expense);
+            return expense;
+        }
+    }
+
 }
