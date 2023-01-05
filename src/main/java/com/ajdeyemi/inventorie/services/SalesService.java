@@ -23,15 +23,17 @@ public class SalesService {
         return salesRepository.findAll();
     }
 
-    public Sales addSale(int productid, int quantity, double amount, Date saleDate) throws Exception {
+    public Sales addSale(int productid, int quantity, Date saleDate) throws Exception {
         var item = productsRepository.findById(productid);
         int itemQuantity = item.get().getProductQuantity();
         if (item.isEmpty()) {
             throw new Exception("This product does not exist");
         }
-        if (quantity > itemQuantity) {
+        if (quantity <= itemQuantity) {
             int newQuantity = itemQuantity - quantity;
             Date dateCreated = new Date();
+            double amount = item.get().getProductAmount() * quantity;
+
             // new Date(System.currentTimeMillis());
             Sales sale = new Sales(productid, quantity, amount, saleDate, dateCreated);
             salesRepository.save(sale);

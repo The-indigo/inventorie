@@ -27,6 +27,7 @@ public class ProductsService {
         }
     }
 
+    // To increase the number of the product quantity
     public Products addProductQuantity(int id, int quantity) throws Exception {
         var item = productsRepository.findById(id);
         if (item.isEmpty()) {

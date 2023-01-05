@@ -27,13 +27,15 @@ public class SalesController {
         return salesService.getAllSales();
     }
 
+    // Using the AddSale model for the request body
+    // could have used an hashmap/map instead of creating a seperate class
     @PostMapping("/sales/add")
     public Sales addSales(@RequestBody AddSale sale) throws Exception {
         var productItem = productsRepository.findByProductName(sale.getProductName());
         if (productItem != null) {
             // string date format should be yy-mm-dd
             Date saleDate = Date.valueOf(sale.getSaleDate());
-            return salesService.addSale(productItem.getProductId(), sale.getQuantity(), sale.getAmount(),
+            return salesService.addSale(productItem.getProductId(), sale.getQuantity(),
                     saleDate);
         } else {
             throw new Exception("This product not yet in record");
