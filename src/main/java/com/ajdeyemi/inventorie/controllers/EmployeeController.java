@@ -1,7 +1,5 @@
 package com.ajdeyemi.inventorie.controllers;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,14 +25,15 @@ public class EmployeeController {
         return empService.getAllEmployees();
     }
 
-    @PostMapping("/addemployee")
+    @PostMapping("/authenticate/register")
     public Employee addEmployee(@RequestBody Employee employee) throws Exception {
         return empService.addEmployee(employee.getEmpName(), employee.getEmpDesignation(),
                 employee.getEmpPhone(), employee.getEmpAddress(), employee.getPassword());
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) {
+    @PostMapping("/authenticate/login")
+    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request)
+            throws Exception {
         return ResponseEntity.ok(empService.authenticate(request));
     }
 
