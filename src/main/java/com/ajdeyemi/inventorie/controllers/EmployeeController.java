@@ -25,6 +25,11 @@ public class EmployeeController {
         return empService.getAllEmployees();
     }
 
+    @GetMapping("/gimme")
+    public String getthis() {
+        return "this is it";
+    }
+
     @PostMapping("/addemployee")
     public Employee addEmployee(@RequestBody Employee employee) throws Exception {
         return empService.addEmployee(employee.getEmpName(), employee.getEmpDesignation(),

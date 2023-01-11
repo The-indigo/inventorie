@@ -20,7 +20,9 @@ public class JwtService {
     private static final String SECRET_KEY = "6A586E5A7234753778214125442A472D4B6150645367566B5970337335763879";
 
     public String extractUserId(String token) {
-        return extractClaim(token, Claims::getSubject);
+        return extractClaim(
+                token,
+                Claims::getSubject);
     }
 
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
@@ -40,10 +42,9 @@ public class JwtService {
                 .compact();
     }
 
-    public boolean isToken(String token, UserDetails userDetails) {
+    public boolean isTokenValid(String token, UserDetails userDetails) {
         final String username = extractUserId(token);
         return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
-
     }
 
     private boolean isTokenExpired(String token) {
@@ -55,6 +56,7 @@ public class JwtService {
     }
 
     private Claims extractAllClaims(String token) {
+        // System.out.println("token is token is"+ token);
         return Jwts.parserBuilder().setSigningKey(getSignInKey())
                 .build()
                 .parseClaimsJws(token)
