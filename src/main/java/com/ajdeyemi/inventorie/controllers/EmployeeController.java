@@ -25,13 +25,13 @@ public class EmployeeController {
         return empService.getAllEmployees();
     }
 
-    @PostMapping("/authenticate/register")
+    @PostMapping("/addemployee")
     public Employee addEmployee(@RequestBody Employee employee) throws Exception {
         return empService.addEmployee(employee.getEmpName(), employee.getEmpDesignation(),
                 employee.getEmpPhone(), employee.getEmpAddress(), employee.getPassword());
     }
 
-    @PostMapping("/authenticate/login")
+    @PostMapping("/login")
     public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request)
             throws Exception {
         return ResponseEntity.ok(empService.authenticate(request));

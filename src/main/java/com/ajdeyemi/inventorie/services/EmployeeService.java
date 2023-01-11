@@ -79,6 +79,8 @@ public class EmployeeService {
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
         var user = empRepository.findById(request.getEmail()).orElseThrow();
         var jwtToken = jwtService.generateToken(user);
-        return AuthenticationResponse.builder().token(jwtToken).build();
+        return AuthenticationResponse.builder().employeeId(user.getEmployeeId())
+                .name(user.getEmpName())
+                .name(user.getEmpName()).role(user.getRole()).token(jwtToken).build();
     }
 }
